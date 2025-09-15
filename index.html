@@ -1,182 +1,768 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Shivani Soskandla – Portfolio</title>
-  <meta name="description" content="Electronics & Communication Engineering student portfolio – VLSI, AI/ML, Python, Projects, Certifications, and Contact." />
-  <meta name="theme-color" content="#0ea5e9" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    html { scroll-behavior: smooth; }
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shivani Soskandla - ECE Student & AI Enthusiast</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(12, 12, 12, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #64ffda;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #64ffda, #00bcd4);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(100, 255, 218, 0.1) 0%, transparent 50%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2364ffda' fill-opacity='0.05'%3E%3Cpath d='M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm10 0c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+
+        .hero-content {
+            z-index: 2;
+            position: relative;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #64ffda, #00bcd4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 4rem;
+            box-shadow: 0 0 50px rgba(100, 255, 218, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 50px rgba(100, 255, 218, 0.3); }
+            50% { box-shadow: 0 0 80px rgba(100, 255, 218, 0.5); }
+            100% { box-shadow: 0 0 50px rgba(100, 255, 218, 0.3); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #64ffda, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: #b0bec5;
+            margin-bottom: 2rem;
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
+
+        .hero .description {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            color: #90a4ae;
+            animation: slideInUp 1s ease-out 0.4s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideInUp 1s ease-out 0.6s both;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #64ffda, #00bcd4);
+            color: #0c0c0c;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #64ffda;
+            border: 2px solid #64ffda;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(100, 255, 218, 0.3);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #64ffda, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Education Section */
+        .education-timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .education-timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #64ffda, #00bcd4);
+        }
+
+        .education-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            transform: translateX(10px);
+            border-color: rgba(100, 255, 218, 0.3);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.1);
+        }
+
+        .education-item::before {
+            content: '';
+            position: absolute;
+            left: -37px;
+            top: 30px;
+            width: 12px;
+            height: 12px;
+            background: #64ffda;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.5);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            border-color: rgba(100, 255, 218, 0.3);
+            box-shadow: 0 20px 40px rgba(100, 255, 218, 0.1);
+        }
+
+        .skill-category h3 {
+            color: #64ffda;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(100, 255, 218, 0.1);
+            color: #64ffda;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(100, 255, 218, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #64ffda, #00bcd4);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(100, 255, 218, 0.3);
+            box-shadow: 0 20px 40px rgba(100, 255, 218, 0.1);
+        }
+
+        .project-title {
+            color: #64ffda;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-date {
+            color: #90a4ae;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(100, 255, 218, 0.3);
+            box-shadow: 0 15px 30px rgba(100, 255, 218, 0.1);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: #64ffda;
+            margin-bottom: 1rem;
+        }
+
+        /* Certifications */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .cert-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .cert-card::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #64ffda, #00bcd4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cert-card:hover {
+            transform: scale(1.02);
+            border-color: rgba(100, 255, 218, 0.3);
+            box-shadow: 0 15px 30px rgba(100, 255, 218, 0.1);
+        }
+
+        .cert-title {
+            color: #64ffda;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .cert-org {
+            color: #b0bec5;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section {
+                padding: 50px 15px;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                padding: 0 1rem;
+            }
+
+            .profile-img {
+                width: 150px;
+                height: 150px;
+                font-size: 3rem;
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1001;
+        }
+
+        .scroll-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #64ffda, #00bcd4);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        /* Floating elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(100, 255, 218, 0.3);
+            border-radius: 50%;
+            animation: floatUp 15s infinite linear;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
-<body class="bg-slate-950 text-slate-100 antialiased">
-  <!-- Navbar -->
-  <header class="sticky top-0 z-40 backdrop-blur bg-slate-900/90 border-b border-slate-800">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="flex items-center justify-between h-16">
-        <a href="#home" class="font-semibold tracking-tight text-white">Shivani Soskandla</a>
-        <nav class="hidden md:flex items-center gap-6 text-sm">
-          <a href="#about" class="hover:text-sky-400">About</a>
-          <a href="#education" class="hover:text-sky-400">Education</a>
-          <a href="#skills" class="hover:text-sky-400">Skills</a>
-          <a href="#projects" class="hover:text-sky-400">Projects</a>
-          <a href="#certs" class="hover:text-sky-400">Certifications</a>
-          <a href="#contact" class="hover:text-sky-400">Contact</a>
-        </nav>
-        <div class="flex items-center gap-4">
-          <a href="https://github.com/Shivanireddy18" target="_blank" class="hover:text-sky-400" title="GitHub">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path fill-rule="evenodd" d="M12 .5a12 12 0 0 0-3.794 23.398c.6.112.82-.262.82-.582v-2.256c-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.334-1.756-1.334-1.756-1.09-.745.082-.73.082-.73 1.205.085 1.84 1.238 1.84 1.238 1.07 1.835 2.807 1.305 3.492.997.108-.775.418-1.305.762-1.605-2.665-.305-5.467-1.334-5.467-5.932 0-1.31.468-2.38 1.236-3.22-.124-.304-.536-1.53.118-3.186 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 0 1 6 0c2.292-1.552 3.3-1.23 3.3-1.23.654 1.656.242 2.882.118 3.186.77.84 1.236 1.91 1.236 3.22 0 4.61-2.807 5.624-5.48 5.92.43.37.814 1.102.814 2.222v3.293c0 .322.218.698.824.58A12.002 12.002 0 0 0 12 .5Z" clip-rule="evenodd"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/in/shivani-reddy-soskandla" target="_blank" class="hover:text-sky-400" title="LinkedIn">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.762 2.239 5 5 5h14c2.762 0 5-2.238 5-5v-14c0-2.761-2.238-5-5-5zm-11.5 20h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.766 0-.975.784-1.766 1.75-1.766s1.75.791 1.75 1.766c0 .976-.784 1.766-1.75 1.766zm13 12.268h-3v-5.604c0-1.336-.025-3.059-1.865-3.059-1.868 0-2.155 1.46-2.155 2.965v5.698h-3v-11h2.881v1.507h.041c.401-.761 1.381-1.563 2.844-1.563 3.04 0 3.6 2.002 3.6 4.605v6.451z"/></svg>
-          </a>
-        </div>
-      </div>
+<body>
+    <div class="scroll-indicator">
+        <div class="scroll-progress"></div>
     </div>
-  </header>
 
-  <!-- Hero -->
-  <section id="home" class="relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
-    <div class="max-w-6xl mx-auto px-4 py-24 md:py-32">
-      <div class="text-center">
-        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight">Soskandla Shivani</h1>
-        <p class="mt-6 text-slate-300 text-lg max-w-3xl mx-auto">I build intelligent physical design workflows and ML-driven tools. Passionate about <span class="font-semibold text-sky-400">AIML</span>, and <span class="font-semibold text-sky-400">VLSI</span>, computer vision, and Python automation.</p>
-        <div class="mt-10 flex justify-center gap-4">
-          <a href="#projects" class="rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-semibold px-6 py-3 shadow-lg transition">View Projects</a>
-          <a href="#contact" class="rounded-xl border border-slate-700 hover:bg-slate-800 px-6 py-3 transition">Get in Touch</a>
-        </div>
-      </div>
+    <div class="floating-elements">
+        <div class="floating-element" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="floating-element" style="left: 20%; animation-delay: 2s;"></div>
+        <div class="floating-element" style="left: 30%; animation-delay: 4s;"></div>
+        <div class="floating-element" style="left: 40%; animation-delay: 6s;"></div>
+        <div class="floating-element" style="left: 50%; animation-delay: 8s;"></div>
+        <div class="floating-element" style="left: 60%; animation-delay: 10s;"></div>
+        <div class="floating-element" style="left: 70%; animation-delay: 12s;"></div>
+        <div class="floating-element" style="left: 80%; animation-delay: 14s;"></div>
+        <div class="floating-element" style="left: 90%; animation-delay: 16s;"></div>
     </div>
-  </section>
 
-  <!-- About -->
-  <section id="about" class="border-t border-slate-800 bg-slate-900/40">
-    <div class="max-w-6xl mx-auto px-4 py-16 text-center">
-      <h2 class="text-3xl font-bold">About Me</h2>
-      <p class="mt-6 max-w-3xl mx-auto text-slate-300">I'm <span class="font-semibold">Shivani Soskandla</span>, a B.Tech student in <span class="font-semibold">Electronics & Communication Engineering</span> at Sreenidhi Institute of Science and Technology (Class of 2026). I enjoy solving physical design challenges with data-driven methods—especially using Python, scikit-learn, XGBoost, and OpenROAD for VLSI workflows.</p>
-    </div>
-  </section>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
 
-  <!-- Education -->
-  <section id="education" class="border-t border-slate-800">
-    <div class="max-w-6xl mx-auto px-4 py-16">
-      <h2 class="text-3xl font-bold text-center">Education</h2>
-      <div class="mt-10 grid gap-6 md:grid-cols-3">
-        <div class="rounded-2xl border border-slate-800 p-6 bg-slate-900 hover:scale-105 transition">
-          <h3 class="font-semibold">Sreenidhi Institute of Science and Technology</h3>
-          <div class="text-sm text-slate-400">B.Tech, ECE • 2026</div>
-          <div class="mt-2 text-sm">CGPA: <span class="font-semibold text-sky-400">9.04</span></div>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class=" ">
+                
+            </div>
+            <h1>Shivani Soskandla</h1>
+            <p class="subtitle">Electronics & Communication Engineering Student</p>
+            <p class="description">
+                Passionate B.Tech ECE student with expertise in VLSI design, AI/ML, and software development. 
+                Currently pursuing Electronics & Communication Engineering at Sreenidhi Institute of Science and Technology 
+                with a CGPA of 9.04. Dedicated to innovation in semiconductor technology and artificial intelligence.
+            </p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">
+                    <i class="fas fa-code"></i> View Projects
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i> Get In Touch
+                </a>
+            </div>
         </div>
-        <div class="rounded-2xl border border-slate-800 p-6 bg-slate-900 hover:scale-105 transition">
-          <h3 class="font-semibold">Sai Chaitanya Junior College</h3>
-          <div class="text-sm text-slate-400">Class XII • 2022</div>
-          <div class="mt-2 text-sm">Marks: <span class="font-semibold text-sky-400">983</span></div>
-        </div>
-        <div class="rounded-2xl border border-slate-800 p-6 bg-slate-900 hover:scale-105 transition">
-          <h3 class="font-semibold">HRD School of Excellence</h3>
-          <div class="text-sm text-slate-400">Class X • 2020 (CBSE)</div>
-          <div class="mt-2 text-sm">Marks: <span class="font-semibold text-sky-400">426</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Skills -->
-  <section id="skills" class="border-t border-slate-800 bg-slate-900/40">
-    <div class="max-w-6xl mx-auto px-4 py-16 text-center">
-      <h2 class="text-3xl font-bold">Technical Skills</h2>
-      <div class="mt-8 flex flex-wrap justify-center gap-3 text-sm">
-        <span class="px-4 py-2 rounded-full bg-sky-900 text-sky-300">AIML</span>
-        <span class="px-4 py-2 rounded-full bg-sky-900 text-sky-300">Python</span>
-        <span class="px-4 py-2 rounded-full bg-sky-900 text-sky-300">scikit-learn</span>
-        <span class="px-4 py-2 rounded-full bg-sky-900 text-sky-300">XGBoost</span>
-        <span class="px-4 py-2 rounded-full bg-sky-900 text-sky-300">OpenROAD</span>
-        <span class="px-4 py-2 rounded-full bg-sky-900 text-sky-300">Java</span>
-        <span class="px-4 py-2 rounded-full bg-sky-900 text-sky-300">SQL</span>
-        <span class="px-4 py-2 rounded-full bg-sky-900 text-sky-300">Generative AI</span>
-         <span class="px-4 py-2 rounded-full bg-sky-900 text-sky-300">VLSI PD</span>
-          <span class="px-4 py-2 rounded-full bg-sky-900 text-sky-300">PANDAS</span>
-           <span class="px-4 py-2 rounded-full bg-sky-900 text-sky-300">HTML</span>
-            <span class="px-4 py-2 rounded-full bg-sky-900 text-sky-300">CSS</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects -->
-  <section id="projects" class="border-t border-slate-800">
-    <div class="max-w-6xl mx-auto px-4 py-16">
-      <h2 class="text-3xl font-bold text-center">Projects</h2>
-      <div class="mt-10 grid gap-8 md:grid-cols-3">
-        <article class="rounded-2xl border border-slate-800 p-6 bg-slate-900 hover:shadow-lg hover:border-sky-600 hover:scale-105 transition">
-          <h3 class="font-semibold text-lg">AI-Based Floorplanning Optimization</h3>
-          <p class="mt-3 text-sm text-slate-300">Built ML pipeline (Python, scikit-learn, XGBoost) to predict optimal placement regions and integrated with OpenROAD. Achieved reduced wirelength, lower congestion, and improved timing.</p>
-        </article>
-        <article class="rounded-2xl border border-slate-800 p-6 bg-slate-900 hover:shadow-lg hover:border-sky-600 hover:scale-105 transition">
-          <h3 class="font-semibold text-lg">Digital Handwriting Recognition</h3>
-          <p class="mt-3 text-sm text-slate-300">OCR pipeline using CNN/RNN: preprocessing, feature extraction, training, and evaluation for diverse handwriting styles.</p>
-        </article>
-        <article class="rounded-2xl border border-slate-800 p-6 bg-slate-900 hover:shadow-lg hover:border-sky-600 hover:scale-105 transition">
-          <h3 class="font-semibold text-lg">Drink Water Reminder</h3>
-          <p class="mt-3 text-sm text-slate-300">Lightweight desktop notifier using Python scheduling and system notifications to encourage hydration.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Certifications -->
-  <section id="certs" class="border-t border-slate-800 bg-slate-900/40">
-    <div class="max-w-6xl mx-auto px-4 py-16">
-      <h2 class="text-3xl font-bold text-center">Certifications</h2>
-      <div class="mt-10 grid gap-8 md:grid-cols-3">
-        <div class="rounded-2xl border border-slate-800 p-6 bg-slate-900 hover:scale-105 transition">
-          <h3 class="font-semibold">Great Learning – Generative AI</h3>
-          <p class="mt-3 text-sm text-slate-300">Studied LLMs, GANs, diffusion models; worked on projects like text summarization, image generation, and chatbots.</p>
+    <section id="education" class="section">
+        <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+        <div class="education-timeline">
+            <div class="education-item">
+                <h3 style="color: #64ffda; font-size: 1.3rem;">B.Tech - Electronics & Communication Engineering</h3>
+                <p style="color: #b0bec5; margin: 0.5rem 0;">Sreenidhi Institute of Science and Technology, Ghatkesar</p>
+                <p style="color: #90a4ae; font-size: 0.9rem;">2022 - 2026</p>
+                <div style="background: rgba(100, 255, 218, 0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                    <strong style="color: #64ffda;">CGPA: 9.04</strong>
+                </div>
+            </div>
+            
+            <div class="education-item">
+                <h3 style="color: #64ffda; font-size: 1.3rem;">Intermediate (Class XII)</h3>
+                <p style="color: #b0bec5; margin: 0.5rem 0;">Sai Chaitanya Junior College</p>
+                <p style="color: #90a4ae; font-size: 0.9rem;">2022</p>
+                <div style="background: rgba(100, 255, 218, 0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                    <strong style="color: #64ffda;">Marks: 983 (TSBIE)</strong>
+                </div>
+            </div>
+            
+            <div class="education-item">
+                <h3 style="color: #64ffda; font-size: 1.3rem;">Secondary School (Class X)</h3>
+                <p style="color: #b0bec5; margin: 0.5rem 0;">HRD School of Excellence</p>
+                <p style="color: #90a4ae; font-size: 0.9rem;">2020</p>
+                <div style="background: rgba(100, 255, 218, 0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                    <strong style="color: #64ffda;">Marks: 426 (CBSE)</strong>
+                </div>
+            </div>
         </div>
-        <div class="rounded-2xl border border-slate-800 p-6 bg-slate-900 hover:scale-105 transition">
-          <h3 class="font-semibold">AICTE – AI/ML Internship</h3>
-          <p class="mt-3 text-sm text-slate-300">3-month internship covering model training, evaluation, deployment with TensorFlow, Keras, and Google Cloud AI.</p>
-        </div>
-        <div class="rounded-2xl border border-slate-800 p-6 bg-slate-900 hover:scale-105 transition">
-          <h3 class="font-semibold">Mepro Pearson – Level 10</h3>
-          <p class="mt-3 text-sm text-slate-300">Achieved Level 10 proficiency with exceptional communication skills in both writing and speech.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact -->
-  <section id="contact" class="border-t border-slate-800 bg-slate-900/40">
-    <div class="max-w-6xl mx-auto px-4 py-16">
-      <h2 class="text-3xl font-bold">Contact</h2>
-      <div class="mt-10 grid gap-6 md:grid-cols-2">
-        <div class="space-y-3 text-slate-300">
-          <div><span class="font-semibold text-white">Email:</span> <a href="mailto:22311a04l7@ece.sreenidhi.edu.in" class="hover:text-sky-400">22311a04l7@ece.sreenidhi.edu.in</a></div>
-          <div><span class="font-semibold text-white">Phone:</span> <a href="tel:+917386002636" class="hover:text-sky-400">+91 73860 02636</a></div>
-          <div><span class="font-semibold text-white">Address:</span> Nalgonda, Telangana – 508258</div>
+    <section id="skills" class="section">
+        <h2><i class="fas fa-brain"></i> Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3><i class="fas fa-microchip"></i> VLSI & Hardware</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">VLSITD</span>
+                    <span class="skill-tag">VLSIPD</span>
+                    <span class="skill-tag">DVSV</span>
+                    <span class="skill-tag">OpenROAD</span>
+                </div>
+            </div>
+            
+            <div class="skill-category">
+                <h3><i class="fas fa-robot"></i> AI/ML & Data Science</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Machine Learning</span>
+                    <span class="skill-tag">Generative AI</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Pandas</span>
+                    <span class="skill-tag">scikit-learn</span>
+                    <span class="skill-tag">XGBoost</span>
+                </div>
+            </div>
+            
+            <div class="skill-category">
+                <h3><i class="fas fa-code"></i> Programming</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">C Programming</span>
+                    <span class="skill-tag">Data Structures</span>
+                    <span class="skill-tag">Algorithms</span>
+                    <span class="skill-tag">SQL</span>
+                </div>
+            </div>
+            
+            <div class="skill-category">
+                <h3><i class="fas fa-globe"></i> Web Development</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">HTML</span>
+                    <span class="skill-tag">CSS</span>
+                    <span class="skill-tag">JavaScript</span>
+                </div>
+            </div>
         </div>
-        <form class="rounded-2xl border border-slate-800 p-6 bg-slate-900" onsubmit="event.preventDefault(); alert('Thanks! I will get back to you soon.'); this.reset();">
-          <input class="w-full mb-3 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2" type="text" placeholder="Your Name" required>
-          <input class="w-full mb-3 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2" type="email" placeholder="Your Email" required>
-          <textarea class="w-full mb-3 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 h-32" placeholder="Message" required></textarea>
-          <button class="w-full rounded-lg bg-sky-600 hover:bg-sky-700 py-2 font-semibold">Send</button>
-        </form>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <footer class="border-t border-slate-800">
-    <div class="max-w-6xl mx-auto px-4 py-6 text-sm text-slate-500 flex items-center justify-between">
-      <p>© <span id="year"></span> Shivani Soskandla</p>
-      <a href="#home" class="hover:text-sky-400">Back to top ↑</a>
-    </div>
-  </footer>
+    <section id="projects" class="section">
+        <h2><i class="fas fa-project-diagram"></i> Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-title">
+                    <i class="fas fa-microchip"></i>
+                    AI-Based VLSI Floorplanning Optimization
+                </div>
+                <div class="project-date">Jul 2025 - Aug 2025</div>
+                <p>Developed an innovative AI-based approach for VLSI floorplanning optimization using Python, scikit-learn, XGBoost, and OpenROAD. Successfully extracted features from ISPD benchmark netlists and trained ML models to predict optimal placement regions, achieving reduced wirelength, lower congestion, and improved timing closure.</p>
+                <div style="margin-top: 1rem;">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">scikit-learn</span>
+                    <span class="skill-tag">XGBoost</span>
+                    <span class="skill-tag">OpenROAD</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-title">
+                    <i class="fas fa-tint"></i>
+                    Smart Water Reminder System
+                </div>
+                <div class="project-date">Jan 2025 - Feb 2025</div>
+                <p>Created an intelligent water reminder application that sends timely alerts and notifications to encourage users to maintain proper hydration. Utilized Python libraries to create scheduled tasks and system notifications, contributing to overall well-being and productivity.</p>
+                <div style="margin-top: 1rem;">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Task Scheduling</span>
+                    <span class="skill-tag">GUI</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-title">
+                    <i class="fas fa-pen-fancy"></i>
+                    Digital Handwriting Recognition
+                </div>
+                <div class="project-date">Nov 2024 - Dec 2024</div>
+                <p>Implemented a sophisticated digital handwriting recognition system using AI/ML techniques to convert handwritten text into digital format. Employed OCR, CNNs, and RNNs for accurate recognition across various handwriting styles, making it useful for document digitization and accessibility applications.</p>
+                <div style="margin-top: 1rem;">
+                    <span class="skill-tag">Machine Learning</span>
+                    <span class="skill-tag">OCR</span>
+                    <span class="skill-tag">CNN</span>
+                    <span class="skill-tag">RNN</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+    <section id="certifications" class="section">
+        <h2><i class="fas fa-certificate"></i> Certifications & Achievements</h2>
+        <div class="cert-grid">
+            <div class="cert-card">
+                <div class="cert-title">Generative AI Specialization</div>
+                <div class="cert-org">Great Learning</div>
+                <p>Comprehensive experience with Generative AI models and tools. Studied LLMs, GANs, and diffusion models using Python and ML libraries. Worked on projects including text summarization, image generation, and chatbots while promoting responsible AI practices.</p>
+            </div>
+            
+            <div class="cert-card">
+                <div class="cert-title">AI/ML Internship Program</div>
+                <div class="cert-org">AICTE</div>
+                <p>Completed a 3-month intensive AI/ML internship focusing on practical implementation of machine learning and deep learning. Gained expertise in ethical AI, model interpretability, and responsible AI principles with hands-on experience using TensorFlow, Keras, and Google Cloud AI.</p>
+            </div>
+            
+            <div class="cert-card">
+                <div class="cert-title">Communication Skills - Level 10</div>
+                <div class="cert-org">MEPRO Pearson</div>
+                <p>Achieved exceptional proficiency in communication skills with Level 10 certification. Demonstrated versatility in both written and verbal communication, with the ability to tailor approaches to different audiences and contexts for maximum impact.</p>
+            </div>
+            
+            <div class="cert-card">
+                <div class="cert-title">Pragathi Scholarship</div>
+                <div class="cert-org">Academic Merit Award - Mar 2023</div>
+                <p>Awarded the prestigious Pragathi Scholarship based on outstanding academic performance and consistent dedication to studies. This recognition highlights commitment to academic excellence and supports the pursuit of educational and professional goals.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2><i class="fas fa-envelope"></i> Let's Connect</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <h3>Phone</h3>
+                <p>+91 7386002636</p>
+            </div>
+            
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Email</h3>
+                <p>22311a04l7@ece.sreenidhi.edu.in</p>
+            </div>
+            
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3>Location</h3>
+                <p>Cherkupalli, Nalgonda<br>Telangana - 508258</p>
+            </div>
